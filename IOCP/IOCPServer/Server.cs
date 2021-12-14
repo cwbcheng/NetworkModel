@@ -102,6 +102,7 @@ namespace IOCPServer
                 Interlocked.Add(ref totalBytesRead, e.BytesTransferred);
                 Console.WriteLine("The server has read a total of {0} bytes", totalBytesRead);
 
+                Console.WriteLine("The server receive '{0}'", Encoding.ASCII.GetString(e.Buffer, e.Offset, e.BytesTransferred));
                 e.SetBuffer(e.Offset, e.BytesTransferred);
                 if (!token.Socket.SendAsync(e))
                 {
